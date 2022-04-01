@@ -42,7 +42,7 @@ A aplicação deve contemplar as seguintes diretrizes:
 ## Como entregar o desafio?
 
 1. Faça um fork desse projeto em sua conta pessoal no GitHub;
-2. Desenvolva o desafio Frontend do [SkyDan](https://github.com/Sky-Dan);
+2. Desenvolva o desafio Frontend da [SkyDan](https://github.com/Sky-Dan);
 3. Adicione como membro do repositório o seguinte usuário do GitHub [@danielneris](https://github.com/danielneris);
 4. Por fim, envie um email informando que concluiu o desafio p/ [vagas@skydan.com.br](mailto:vagas@skydan.com.br). (coloque no assunto o nome do desafio)
 
