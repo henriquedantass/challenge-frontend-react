@@ -32,6 +32,11 @@ A aplicação deve contemplar as seguintes diretrizes:
 - Nos **Favoritos**, a lista de cards dos herói que foram selecionados para a equipe deve ser exibido, assim como pode ser visto na **Home**, com a diferença de que o botão que servia para juntá-lo ao time, agora o remove.
 - Novamente, pensando em uma aplicação performática, é interessante que exista uma paginação, seja ela tradicional (como explicado acima), ou de carregamento infinito.
 
+## Grande Diferencial
+- Login com a Metamask [Metamask](https://docs.metamask.io/guide/getting-started.html#basic-considerations)
+[Extensao](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en)
+[docs](https://docs.metamask.io/guide/ethereum-provider.html#events)
+
 ## Diferenciais
 
 - README.MD organizado;
