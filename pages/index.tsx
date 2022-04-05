@@ -32,17 +32,6 @@ const Home: NextPage = () => {
     }
   }
 
-  const verifyCharacterAlreadyOnTeam = useCallback(
-    (id) => {
-      const alreadyOnTeam = team.findIndex((character) => character.id === id);
-
-      if (alreadyOnTeam > 0) return true;
-
-      return false;
-    },
-    [team]
-  );
-
   // search for a hero
   function handleSearchCharacter(name: string) {
     api
@@ -128,7 +117,6 @@ const Home: NextPage = () => {
                       router.push(`/character/${heroe.id}`)
                     }
                     handleOnClickIcon={() => addCharacterOnTeam(heroe)}
-                    alreadyOnTeam={verifyCharacterAlreadyOnTeam(heroe.id)}
                     key={heroe.id}
                     name={heroe.name}
                     id={heroe.id}
@@ -139,7 +127,13 @@ const Home: NextPage = () => {
               </>
             )}
           </Flex>
-          <Flex m="40px 0" width="100%" gap="20px" justifyContent="flex-end">
+          <Flex
+            m="40px 0"
+            width="100%"
+            gap="20px"
+            justifyContent="flex-end"
+            paddingBottom="100px"
+          >
             {page !== 0 && (
               <Text
                 onClick={handleBackCharactersPage}

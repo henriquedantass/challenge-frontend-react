@@ -1,8 +1,10 @@
 import { Flex, Text, Img, Stack, Icon } from "@chakra-ui/react";
+import { useContext, useEffect, useState } from "react";
 import { MdGroup } from "react-icons/md";
+import { teamContext } from "../../context/teamContext";
 
 export interface CharacterProps {
-  id: string;
+  id: number;
   name: string;
   description: string;
   thumbnail: {
@@ -11,17 +13,30 @@ export interface CharacterProps {
   };
   handleOnClickHeroe: () => void;
   handleOnClickIcon: () => void;
-  alreadyOnTeam: boolean;
 }
 
 export const Character = ({
+  id,
   name,
   thumbnail,
   description,
   handleOnClickHeroe,
   handleOnClickIcon,
-  alreadyOnTeam = false,
 }: CharacterProps) => {
+  const [alreadyOnTeam, setAlreadyOnTeam] = useState(false);
+  const { team } = useContext(teamContext);
+
+  useEffect(() => {
+    const isOnTeam = team.findIndex((character) => character.id === id);
+
+    if (isOnTeam >= 0) setAlreadyOnTeam(true);
+  }, []);
+
+  function onClickIcon() {
+    setAlreadyOnTeam(!alreadyOnTeam);
+    handleOnClickIcon();
+  }
+
   return (
     <Flex
       borderRadius="10px 30px"
@@ -33,7 +48,7 @@ export const Character = ({
       boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25);"
     >
       <Flex
-        onClick={handleOnClickIcon}
+        onClick={onClickIcon}
         borderRadius="50%"
         bg={alreadyOnTeam ? "#F43735" : "#F5F5F5"}
         color={alreadyOnTeam ? "#FFF" : "#000"}
