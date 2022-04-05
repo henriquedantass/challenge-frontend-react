@@ -1,18 +1,27 @@
 import { Flex, Text, Img, Stack } from "@chakra-ui/react";
 
 export interface CharacterProps {
-  id: number;
+  id: string;
   name: string;
   description: string;
   thumbnail: {
     extension: string;
     path: string;
   };
+  handleOnClickHeroe: () => void;
 }
 
-export const Character = ({ name, thumbnail, description }: CharacterProps) => {
+export const Character = ({
+  name,
+  thumbnail,
+  description,
+  handleOnClickHeroe,
+  ...rest
+}: CharacterProps) => {
   return (
     <Flex
+      onClick={handleOnClickHeroe}
+      cursor="pointer"
       borderRadius="10px 30px"
       width="270px"
       height="380px"
@@ -20,6 +29,7 @@ export const Character = ({ name, thumbnail, description }: CharacterProps) => {
       flexDir="column"
       position="relative"
       boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25);"
+      {...rest}
     >
       <Flex
         borderRadius="50%"

@@ -1,16 +1,19 @@
+import api from "../src/services/api";
 import type { NextPage } from "next";
 import { Template } from "../src/utils/Template";
 import { Flex, Text, Spinner } from "@chakra-ui/react";
 import { Search } from "../src/components/Search";
 import { useEffect, useState } from "react";
-import api from "../src/services/api";
 import { Character, CharacterProps } from "../src/components/Character";
+import { useRouter } from "next/router";
+import { SectionHeader } from "../src/components/SectionHeader";
 
 const Home: NextPage = () => {
   const [heroes, setHeroes] = useState<CharacterProps[]>([]);
   const [page, setPage] = useState(0);
   const [lastPage, setLastPage] = useState<number>(1);
   const [isLoadingCharacters, setIsLoadingCharacters] = useState(true);
+  const router = useRouter();
 
   function handleNextCharactersPage() {
     if (lastPage > page) {
@@ -49,19 +52,7 @@ const Home: NextPage = () => {
       <Flex flexDir="column" alignItems="center" width="100%">
         <Search />
         <Flex mt="34px" width="100%" flexDir="column">
-          <Flex
-            mb="20px"
-            width="100%"
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <Text fontSize="42px" fontWeight="bold">
-              Characters
-            </Text>
-            <Text fontSize="24px" fontWeight="bold">
-              #results
-            </Text>
-          </Flex>
+          <SectionHeader mb="20px" title="Characters" subtitle="#results" />
           <Flex
             flexWrap="wrap"
             gap="20px 30px"
@@ -75,6 +66,9 @@ const Home: NextPage = () => {
               <>
                 {heroes.map((heroe) => (
                   <Character
+                    handleOnClickHeroe={() =>
+                      router.push(`/character/${heroe.id}`)
+                    }
                     key={heroe.id}
                     name={heroe.name}
                     id={heroe.id}

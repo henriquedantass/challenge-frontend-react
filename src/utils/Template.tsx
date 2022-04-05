@@ -29,7 +29,6 @@ export const Template = ({ children }: TemplateProps) => {
       </Flex>
       <Flex
         width="100%"
-        mt="20px"
         height="80px"
         bg="#202020"
         justifyContent="space-around"
