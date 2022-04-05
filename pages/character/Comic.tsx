@@ -40,6 +40,7 @@ export const Comic = ({ comic }: ComicProps) => {
       <Img
         width={["100%", "22%"]}
         height={["40%", "100%"]}
+        maxW={["", "250px"]}
         borderRadius={["0", "10px 0px 0px 70px"]}
         src={`${comic.thumbnail.path}/standard_fantastic.${comic.thumbnail.extension}`}
       />
