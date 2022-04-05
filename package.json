@@ -1,5 +1,6 @@
 {
-  "name": "nextjs-template-chakraui",
+  "name": "challenge-frontend",
+  "author": "Henrique Dantas",
   "private": true,
   "scripts": {
     "dev": "next dev",
