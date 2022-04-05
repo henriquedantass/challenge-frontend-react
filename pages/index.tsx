@@ -1,7 +1,7 @@
 import api from "../src/services/api";
 import type { NextPage } from "next";
 import { Template } from "../src/utils/Template";
-import { Flex, Text, Spinner } from "@chakra-ui/react";
+import { Flex, Text, Spinner, useToast } from "@chakra-ui/react";
 import { Search } from "../src/components/Search";
 import { useEffect, useState } from "react";
 import { Character, CharacterProps } from "../src/components/Character";
@@ -14,19 +14,64 @@ const Home: NextPage = () => {
   const [lastPage, setLastPage] = useState<number>(1);
   const [isLoadingCharacters, setIsLoadingCharacters] = useState(true);
   const router = useRouter();
+  const toast = useToast();
 
+  // pagination
   function handleNextCharactersPage() {
     if (lastPage > page) {
       setPage(page + 10);
     }
   }
 
+  // pagination
   function handleBackCharactersPage() {
     if (page > 0) {
       setPage(page - 10);
     }
   }
 
+  // search for a hero
+  function handleSearchCharacter(name: string) {
+    api
+      .get(`characters?name=${name}`, {
+        params: {
+          apikey: process.env.NEXT_PUBLIC_API_KEY,
+          limit: 10,
+          offset: page,
+        },
+      })
+      .then((response) => {
+        const { results } = response.data.data;
+
+        // dont find any heroe with the name of search
+        if (results.length <= 0) {
+          toast({
+            status: "error",
+            description: "Personagem não encontrado!",
+            duration: 9000,
+            isClosable: true,
+            position: "top-right",
+          });
+
+          return;
+        }
+
+        // find a heroe
+        const heroeId = results[0].id;
+        router.push(`/character/${heroeId}`);
+      })
+      .catch(() => {
+        toast({
+          status: "error",
+          description: "Ops! algo errado aconteceu",
+          duration: 9000,
+          isClosable: true,
+          position: "top-right",
+        });
+      });
+  }
+
+  // LIST HEROES
   useEffect(() => {
     setIsLoadingCharacters(true);
 
@@ -50,7 +95,7 @@ const Home: NextPage = () => {
   return (
     <Template>
       <Flex flexDir="column" alignItems="center" width="100%">
-        <Search />
+        <Search onSubmit={(value) => handleSearchCharacter(value)} />
         <Flex mt="34px" width="100%" flexDir="column">
           <SectionHeader mb="20px" title="Characters" subtitle="#results" />
           <Flex

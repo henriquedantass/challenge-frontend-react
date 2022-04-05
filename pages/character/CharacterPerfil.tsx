@@ -41,7 +41,9 @@ export const CharacterPerfil = ({ heroe, ...rest }: CharacterPerfilProps) => {
           marginLeft="30px"
           noOfLines={[5, 7, 7]}
         >
-          {heroe?.description}
+          {heroe?.description.length > 0
+            ? heroe.description
+            : "This heroe dont have any description registred"}
         </Text>
       </Flex>
     </Flex>

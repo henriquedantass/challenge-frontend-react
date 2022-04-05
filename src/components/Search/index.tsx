@@ -1,7 +1,20 @@
 import { Flex, Text, Input, IconButton } from "@chakra-ui/react";
+import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
-export const Search = () => {
+interface SearchProps {
+  onSubmit: (value: string) => void;
+}
+
+export const Search = ({ onSubmit }: SearchProps) => {
+  const [searchValue, setSearchValue] = useState<string>("");
+
+  function handleClickSearch() {
+    if (searchValue.length > 0) {
+      onSubmit(searchValue);
+    }
+  }
+
   return (
     <Flex
       margin={["150px 30px", "150px 0"]}
@@ -19,12 +32,14 @@ export const Search = () => {
       </Text>
       <Flex background="white" width="100%" borderRadius="5px 20px">
         <Input
+          onChange={(e) => setSearchValue(e.target.value)}
           height="70px"
           borderRadius="5px 0px 0px 20px"
           padding="0 20px"
           variant="unstyled"
         />
         <IconButton
+          onClick={handleClickSearch}
           height="70px"
           width="90px"
           fontSize="28px"
