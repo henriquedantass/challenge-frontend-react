@@ -31,14 +31,16 @@ export const Comic = ({ comic }: ComicProps) => {
   return (
     <Flex
       width="100%"
-      height="280px"
+      height="fit-content"
       borderRadius="10px 70px"
       background="white"
       boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
+      flexDir={["column", "row"]}
     >
       <Img
-        width="22%"
-        borderRadius="10px 0px 0px 70px"
+        width={["100%", "22%"]}
+        height={["40%", "100%"]}
+        borderRadius={["0", "10px 0px 0px 70px"]}
         src={`${comic.thumbnail.path}/standard_fantastic.${comic.thumbnail.extension}`}
       />
       <Stack color="#212121" padding="19px 70px 19px 34px" spacing="20px">

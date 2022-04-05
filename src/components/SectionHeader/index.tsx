@@ -17,10 +17,10 @@ export const SectionHeader = ({
       alignItems="center"
       {...rest}
     >
-      <Text fontSize="42px" fontWeight="bold">
+      <Text fontSize={["28px", "42px"]} fontWeight="bold">
         {title}
       </Text>
-      <Text fontSize="24px" fontWeight="bold">
+      <Text fontSize={["15px", "28px"]} fontWeight="bold">
         {subtitle}
       </Text>
     </Flex>
