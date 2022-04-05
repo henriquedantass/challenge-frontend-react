@@ -8,6 +8,7 @@ import { GetServerSideProps } from "next";
 import { CharacterPerfil } from "./CharacterPerfil";
 import { SectionHeader } from "../../src/components/SectionHeader";
 import { Comic, ComicItemProps } from "./Comic";
+import { ReturnPage } from "../../src/components/ReturnPage";
 
 interface CharacterPage {
   params: {
@@ -60,17 +61,7 @@ export default function CharacterPage({ params }: CharacterPage) {
           <Spinner />
         ) : (
           <>
-            <Flex
-              cursor="pointer"
-              onClick={() => router.back()}
-              marginLeft="auto"
-              gap="10px"
-            >
-              <Text color="#FFCDD2" fontWeight="bold" fontSize="24px">
-                Return to the previous page
-              </Text>
-              <Img src="/assets/BackArrow.svg" />
-            </Flex>
+            <ReturnPage />
 
             <Text
               marginTop="100px"
