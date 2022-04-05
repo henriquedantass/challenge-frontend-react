@@ -3,7 +3,7 @@ import { CharacterProps } from "../components/Character";
 
 interface teamContextData {
   team: CharacterProps[];
-  handleClickToAddCharacter: (characterToAdd: CharacterProps) => void;
+  addCharacterOnTeam: (characterToAdd: CharacterProps) => void;
 }
 
 interface teamProviderProps {
@@ -15,7 +15,7 @@ export const teamContext = createContext({} as teamContextData);
 export function TeamProvider({ children }: teamProviderProps) {
   const [team, setTeam] = useState<CharacterProps[]>([]);
 
-  function handleClickToAddCharacter(characterToAdd: CharacterProps) {
+  function addCharacterOnTeam(characterToAdd: CharacterProps) {
     const verifyIfCharacterExists = team.findIndex(
       (character) => character.id === characterToAdd.id
     );
@@ -36,7 +36,7 @@ export function TeamProvider({ children }: teamProviderProps) {
   }
 
   return (
-    <teamContext.Provider value={{ team, handleClickToAddCharacter }}>
+    <teamContext.Provider value={{ team, addCharacterOnTeam }}>
       {children}
     </teamContext.Provider>
   );

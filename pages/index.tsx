@@ -3,16 +3,18 @@ import type { NextPage } from "next";
 import { Template } from "../src/utils/Template";
 import { Flex, Text, Spinner, useToast } from "@chakra-ui/react";
 import { Search } from "../src/components/Search";
-import { useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { Character, CharacterProps } from "../src/components/Character";
 import { useRouter } from "next/router";
 import { SectionHeader } from "../src/components/SectionHeader";
+import { teamContext } from "../src/context/teamContext";
 
 const Home: NextPage = () => {
   const [heroes, setHeroes] = useState<CharacterProps[]>([]);
   const [page, setPage] = useState(0);
   const [lastPage, setLastPage] = useState<number>(1);
   const [isLoadingCharacters, setIsLoadingCharacters] = useState(true);
+  const { team, addCharacterOnTeam } = useContext(teamContext);
   const router = useRouter();
   const toast = useToast();
 
@@ -29,6 +31,17 @@ const Home: NextPage = () => {
       setPage(page - 10);
     }
   }
+
+  const verifyCharacterAlreadyOnTeam = useCallback(
+    (id) => {
+      const alreadyOnTeam = team.findIndex((character) => character.id === id);
+
+      if (alreadyOnTeam > 0) return true;
+
+      return false;
+    },
+    [team]
+  );
 
   // search for a hero
   function handleSearchCharacter(name: string) {
@@ -114,6 +127,8 @@ const Home: NextPage = () => {
                     handleOnClickHeroe={() =>
                       router.push(`/character/${heroe.id}`)
                     }
+                    handleOnClickIcon={() => addCharacterOnTeam(heroe)}
+                    alreadyOnTeam={verifyCharacterAlreadyOnTeam(heroe.id)}
                     key={heroe.id}
                     name={heroe.name}
                     id={heroe.id}

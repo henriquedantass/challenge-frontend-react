@@ -62,7 +62,6 @@ export default function CharacterPage({ params }: CharacterPage) {
         ) : (
           <>
             <ReturnPage />
-
             <Text
               marginTop="100px"
               fontWeight="bold"
@@ -72,7 +71,12 @@ export default function CharacterPage({ params }: CharacterPage) {
               Discover all comics this <br /> character took part in
             </Text>
             <CharacterPerfil heroe={heroe[0]} />
-            <Flex marginTop="40px" width="100%" flexDir="column">
+            <Flex
+              marginTop="40px"
+              width="100%"
+              flexDir="column"
+              paddingBottom="100px"
+            >
               <SectionHeader title="Comics" subtitle="#results" />
               <Stack width="100%" spacing="50px" marginTop="40px">
                 {heroeComics.map((comicItem: ComicItemProps) => (
