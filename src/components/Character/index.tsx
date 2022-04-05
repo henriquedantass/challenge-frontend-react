@@ -1,4 +1,5 @@
-import { Flex, Text, Img, Stack } from "@chakra-ui/react";
+import { Flex, Text, Img, Stack, Icon } from "@chakra-ui/react";
+import { MdGroup } from "react-icons/md";
 
 export interface CharacterProps {
   id: string;
@@ -38,14 +39,15 @@ export const Character = ({
         width="50px"
         height="50px"
         justifyContent="center"
+        alignItems="center"
         boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25);"
         top="50%"
         right="5px"
         cursor="pointer"
         transition="all 0.5s ease"
-        _hover={{ background: "rgba(244, 55, 53, 0.8)" }}
+        _hover={{ background: "#F43735", color: "white" }}
       >
-        <Img width="25px" src="/assets/Team.svg" />
+        <Icon fontSize="28px" as={MdGroup} />
       </Flex>
       <Img
         width="100%"
