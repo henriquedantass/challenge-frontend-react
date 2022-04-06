@@ -1,12 +1,16 @@
 import { ReactNode } from "react";
 import { Flex, Img, Text } from "@chakra-ui/react";
 import { Header } from "../components/Header";
+import AccountModal from "../components/Metamask/AccountModal";
+import { useEthers } from "@usedapp/core";
 
 interface TemplateProps {
   children: ReactNode;
 }
 
 export const Template = ({ children }: TemplateProps) => {
+  const { account } = useEthers();
+
   return (
     <Flex flexDir="column" height="100vh" position="relative">
       <Header />
@@ -23,6 +27,7 @@ export const Template = ({ children }: TemplateProps) => {
           zIndex={200}
           height="100%"
         >
+          {!account && <AccountModal isOpen onClose={() => alert("fechou")} />}
           {children}
         </Flex>
         <Flex
